@@ -7,6 +7,8 @@ class TwitterClient
   TF_FLICKR_ACCESS_TOKEN=ENV['TF_FLICKR_ACCESS_TOKEN']
   TF_FLICKR_SECRET=ENV['TF_FLICKR_SECRET']
 
+  attr_accessor :tweets
+
   def initialize
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = TF_TWITTER_CONSUMER_KEY
@@ -16,7 +18,21 @@ class TwitterClient
     end
   end
 
-  def tweets(twitter_handle)
-    @client.user_timeline(twitter_handle)
+  def find_tweets(twitter_handle)
+    self.tweets = @client.user_timeline(twitter_handle)
+    self.tweets
+  end
+
+  def recent_hashtags(twitter_handle)
+    find_tweets(twitter_handle) unless tweets
+    matches = tweets.map{ |tweet| tweet.text.scan(hashtag_regex) }
+    matches.flatten
+  end
+
+
+  private  
+
+  def hashtag_regex
+    /#[^\d#][\w-]*/
   end
 end
