@@ -5,6 +5,9 @@ gem 'rails', '4.0.2'
 
 gem 'haml'
 
+gem 'twitter'
+gem 'flickraw'
+
 group :development, :test do
   gem 'sqlite3'
 end
