@@ -4,9 +4,6 @@ class TwitterClient
   TF_TWITTER_ACCESS_TOKEN=ENV['TF_TWITTER_ACCESS_TOKEN']
   TF_TWITTER_SECRET=ENV['TF_TWITTER_SECRET']
 
-  TF_FLICKR_ACCESS_TOKEN=ENV['TF_FLICKR_ACCESS_TOKEN']
-  TF_FLICKR_SECRET=ENV['TF_FLICKR_SECRET']
-
   attr_accessor :tweets
 
   def initialize
@@ -19,14 +16,22 @@ class TwitterClient
   end
 
   def find_tweets(twitter_handle)
-    self.tweets = @client.user_timeline(twitter_handle)
-    self.tweets
+    begin
+      self.tweets = @client.user_timeline(twitter_handle)
+      self.tweets
+    rescue => e
+      puts e.backtrace.join("\n")
+    end
   end
 
   def recent_hashtags(twitter_handle)
     find_tweets(twitter_handle) unless tweets
-    matches = tweets.map{ |tweet| tweet.text.scan(hashtag_regex) }
-    matches.flatten
+    if tweets
+      matches = tweets.map{ |tweet| tweet.text.scan(hashtag_regex) }
+      matches.flatten.uniq
+    else
+      []
+    end
   end
 
 
