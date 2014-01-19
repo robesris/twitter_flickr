@@ -1,8 +1,14 @@
 %h1 twitter-flickr
 
 = form_tag :search do
+  = label_tag :twitter_handle, "Twitter handle"
   = text_field_tag :twitter_handle
+  = label_tag "Results per tag"
+  = text_field_tag :limit
   = submit_tag "Search"
 
-- @hashtags.each do |hashtag|
-  .hashtag= hashtag
+- @hashtag_images.each do |hashtag_image|
+  - if hashtag_image[:image_urls].any?
+    = render partial: "photo_list", locals: { hashtag_image: hashtag_image }
+
+

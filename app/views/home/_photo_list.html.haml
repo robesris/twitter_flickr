@@ -1,0 +1,5 @@
+.hashtag
+  = hashtag_image[:hashtag]
+  .images
+    - hashtag_image[:image_urls].each do |image_url|
+      = image_tag image_url
