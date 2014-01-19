@@ -3,3 +3,6 @@
 = form_tag :search do
   = text_field_tag :twitter_handle
   = submit_tag "Search"
+
+- @tweets.each do |tweet|
+  .tweet= tweet.text
