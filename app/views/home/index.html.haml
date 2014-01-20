@@ -7,7 +7,10 @@
   #result-limit-input
     = label_tag "Results per tag"
     = text_field_tag :limit
-  = submit_tag "Search"
+  = submit_tag "Search", id: "submit-handle"
+
+#notice= flash[:notice]
+#message= @message
 
 - @hashtag_images.each do |hashtag_image|
   - if hashtag_image[:image_urls].any?
