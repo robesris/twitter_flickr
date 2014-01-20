@@ -1,6 +1,7 @@
 .hashtag
-  .hashtag-label= hashtag_image[:hashtag]
+  .hashtag-label= hashtag_image_set.first.hashtag
   .images
-    - hashtag_image[:image_urls].each do |image_url|
+    - hashtag_image_set.each do |hashtag_image|
       .flickr-image
-        = image_tag image_url
+        %a{ href: hashtag_image.flickr_page_url }
+          = image_tag hashtag_image.thumbnail_url

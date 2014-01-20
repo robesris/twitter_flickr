@@ -6,14 +6,14 @@
     = text_field_tag :twitter_handle
   #result-limit-input
     = label_tag "Results per tag"
-    = text_field_tag :limit
+    = text_field_tag :limit, "1"
   = submit_tag "Search", id: "submit-handle"
 
 #notice= flash[:notice]
 #message
 
-- @hashtag_images.each do |hashtag_image|
-  - if hashtag_image[:image_urls].any?
-    = render partial: "photo_list", locals: { hashtag_image: hashtag_image }
+- @hashtag_image_sets.each do |hashtag_image_set|
+  - if hashtag_image_set.any?
+    = render partial: "photo_list", locals: { hashtag_image_set: hashtag_image_set }
 
 

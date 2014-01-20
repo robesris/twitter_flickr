@@ -28,7 +28,7 @@ class TwitterClient
     find_tweets(twitter_handle) unless tweets
     if tweets
       matches = tweets.map{ |tweet| tweet.text.scan(hashtag_regex) }
-      matches.flatten.uniq
+      matches.flatten.uniq{ |match| match.downcase }
     else
       []
     end

@@ -10,16 +10,11 @@ class FlickrClient
     FlickRaw.shared_secret = TF_FLICKR_SECRET
   end
 
-  def tagged_image_urls(tag)
+  def tagged_images(tag)
     photo_list = flickr.tags.getClusterPhotos(tag: tag)
     puts "Going through photos..."
-    urls = photo_list.first(limit).map do |photo|
-      begin # ignore api errors - just get back the photos we can
-        photo_sizes = flickr.photos.getSizes(photo_id: photo["id"])
-        photo_sizes.select{ |photo_size| photo_size["label"] == "Large Square" }.first["source"]
-      rescue => e
-        puts e.backtrace.join("\n")
-      end
+    photo_list.first(limit).map do |photo|
+      FlickrImage.new(photo, tag)
     end
   end
 end
