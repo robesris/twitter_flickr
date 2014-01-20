@@ -1,10 +1,12 @@
 %h1 twitter-flickr
 
 = form_tag :search do
-  = label_tag :twitter_handle, "Twitter handle"
-  = text_field_tag :twitter_handle
-  = label_tag "Results per tag"
-  = text_field_tag :limit
+  #twitter-input
+    = label_tag :twitter_handle, "Twitter handle"
+    = text_field_tag :twitter_handle
+  #result-limit-input
+    = label_tag "Results per tag"
+    = text_field_tag :limit
   = submit_tag "Search"
 
 - @hashtag_images.each do |hashtag_image|

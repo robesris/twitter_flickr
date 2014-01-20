@@ -1,5 +1,6 @@
 .hashtag
-  = hashtag_image[:hashtag]
+  .hashtag-label= hashtag_image[:hashtag]
   .images
     - hashtag_image[:image_urls].each do |image_url|
-      = image_tag image_url
+      .flickr-image
+        = image_tag image_url
