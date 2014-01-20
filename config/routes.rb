@@ -6,6 +6,7 @@ TwitterFlickr::Application.routes.draw do
   root 'home#index'
 
   post 'search' => 'home#search'
+  get 'search' => 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
