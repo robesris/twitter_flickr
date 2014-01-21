@@ -2,6 +2,19 @@ html, body {
   font-family: sans-serif;
 }
 
+.label {
+  width: 10em;
+  float: left;
+}
+
+.form-section {
+  clear: both;
+}
+
+.input {
+  float: left;
+}
+
 .hashtag {
   clear: both;
   padding-top: 2em;
@@ -16,6 +29,18 @@ html, body {
   margin-right: 0.5em;
 }
 
+.button {
+  clear: both;
+}
+
+#loading-image {
+  float: left;
+  display: none;
+  height: 1em;
+  line-height: 1em;
+  margin-left: 2em;
+}
+
 #notice {
   color: #FF0000;
   margin-top: 2em;
@@ -23,5 +48,11 @@ html, body {
 
 #message {
   color: #0000FF;
-  margin-top: 2em;
+  float: left;
+  line-height: 1em;
+  height: 1em;
+}
+
+#instructions {
+  margin-bottom: 1em;
 }

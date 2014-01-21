@@ -1,16 +1,23 @@
-%h1 twitter-flickr hashtag search
+%h1 twitter-flickr
+
+#instructions Enter a Twitter handle to search Flickr for images matching hashtags pulled from the most recent 20 tweets.
 
 = form_tag :search do
-  #twitter-input
-    = label_tag :twitter_handle, "Twitter handle"
-    = text_field_tag :twitter_handle
-  #result-limit-input
-    = label_tag "Results per tag"
-    = text_field_tag :limit, "1"
-  = submit_tag "Search", id: "submit-handle"
+  #twitter-input.form-section
+    .label
+      = label_tag :twitter_handle, "Twitter handle"
+    .input
+      = text_field_tag :twitter_handle
+  #result-limit-input.form-section
+    .label
+      = label_tag "Results per tag"
+    .input
+      = text_field_tag :limit, "1"
+  .button= submit_tag "Search", id: "submit-handle"
 
 #notice= flash[:notice]
 #message
+#loading-image= image_tag "ajax-loader.gif"
 
 - @hashtag_image_sets.each do |hashtag_image_set|
   - if hashtag_image_set.any?
