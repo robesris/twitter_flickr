@@ -3,5 +3,7 @@
   .images
     - hashtag_image_set.each do |hashtag_image|
       .flickr-image
-        %a{ href: hashtag_image.flickr_page_url }
+        %a{ href: hashtag_image.flickr_page_url, target: "_blank" }
           = image_tag hashtag_image.thumbnail_url
+
+= stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)

@@ -15,9 +15,14 @@
       = text_field_tag :limit, "1"
   .button= submit_tag "Search", id: "submit-handle"
 
-#notice= flash[:notice]
-#message
-#loading-image= image_tag "ajax-loader.gif"
+#messages
+  - if flash[:error]
+    #error= flash[:error]
+  - elsif flash[:notice]
+    #notice= flash[:notice]
+
+  #message
+  #loading-image= image_tag "ajax-loader.gif"
 
 - @hashtag_image_sets.each do |hashtag_image_set|
   - if hashtag_image_set.any?

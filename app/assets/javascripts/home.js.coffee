@@ -5,5 +5,6 @@
 $ ->
   $('#submit-handle').click ->
     $('#notice').html('')
+    $('#error').html('')
     $('#message').html('Fetching images...')
     $('#loading-image').css({ display: 'block'})

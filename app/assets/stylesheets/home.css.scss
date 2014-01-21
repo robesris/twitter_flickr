@@ -31,6 +31,7 @@ html, body {
 
 .button {
   clear: both;
+  margin-bottom: 1em;
 }
 
 #loading-image {
@@ -41,8 +42,13 @@ html, body {
   margin-left: 2em;
 }
 
-#notice {
+#error {
   color: #FF0000;
+  margin-top: 2em;
+}
+
+#notice {
+  color: #6AA121;
   margin-top: 2em;
 }
 

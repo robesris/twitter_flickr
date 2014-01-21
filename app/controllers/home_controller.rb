@@ -7,22 +7,14 @@ class HomeController < ApplicationController
     twitter_client = TwitterClient.new
     hashtags = twitter_client.recent_hashtags(params[:twitter_handle])
 
-    limit = params[:limit].to_i
-    limit = 1 if limit < 1
+    flickr_client = FlickrClient.new(params[:limit], hashtags)
+    flickr_client.construct_hashtag_image_sets
+    flash[:notice] = "Done."
+    flash[:error] = nil
+    flash[:error] = "No images found" if flickr_client.no_images?
+    flash[:error] = "No recent hashtags found" if flickr_client.no_hashtags?
 
-    flash[:notice] = ""
-    if hashtags.any?
-      flickr_client = FlickrClient.new(limit)
-      @hashtag_image_sets = hashtags.map do |hashtag|
-        flickr_client.tagged_images(hashtag)
-      end
-      @hashtag_image_sets.reject!{ |hashtag_image_set| hashtag_image_set.empty? }
-      @hashtag_image_sets.sort!{ |set1, set2| set1.first.hashtag.downcase <=> set2.first.hashtag.downcase }
-      flash[:notice] = "No images found" if @hashtag_image_sets.empty?
-    else
-      @hashtag_image_sets = []
-      flash[:notice] = "No recent hashtags found"
-    end
+    @hashtag_image_sets = flickr_client.image_sets
 
     render action: :index
   end
